@@ -21,7 +21,6 @@ app.post("/submit", async (req: Request, res: Response) => {
             await client.lPush("problems", JSON.stringify({ code, language, problemId }));
             i++;
         }
-        // Store in the database
         res.status(200).send("Submission received and stored.");
     } catch (error) {
         console.error("Redis error:", error);
@@ -32,7 +31,7 @@ app.post("/submit", async (req: Request, res: Response) => {
 async function startServer() {
     try {
         await client.connect();
-        console.log("Connected to Redis");
+        console.log("Connected to Redis....");
 
         app.listen(3000, () => {
             console.log("Server is running on port 3000");
